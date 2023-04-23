@@ -24,6 +24,8 @@ const ImageDetails = () => {
         <View>
             <Text>Forests List</Text>
             <Cards url={imagesList[0].url} description={imagesList[0].description} />
+            <Cards url={imagesList[1].url} description={imagesList[1].description} />
+            <Cards url={imagesList[2].url} description={imagesList[2].description} />
         </View>
 
     );
