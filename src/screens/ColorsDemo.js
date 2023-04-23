@@ -7,32 +7,55 @@ const ColorsDemo = () => {
         green: 20,
         blue: 40
     });
-    
-    const increaeDecreaeColorOpacity = (red, green, blue) => {
+    const checkColor=(colorName)=>{
+        if (colorsDefination[colorName]>=255){
+            console.log({ ...colorsDefination,[colorName]: 230});
+            setColorsDefination(colorsDefination=>({ ...colorsDefination,[colorName]: 230}));
+        }
+        if (colorsDefination[colorName]<=0){
+            setColorsDefination(colorsDefination=>({ ...colorsDefination, [colorName]: 20}));
+        }
+        return true;
+    }
+    const increaeDecreaeColorOpacity = async (red, green, blue) => {
+        let colorToCheckForLimit="";
+        if (red>0){
+          colorToCheckForLimit="red";
+        }
+        else if (green>0){
+            colorToCheckForLimit="green";
+        }
+        else if (blue>0){
+            colorToCheckForLimit="blue";
+        }
+        else {
+            console.log("Nothing to check");
+        }
+       await checkColor(colorToCheckForLimit);
         let offSet=5;
         if (red == 2) {
             console.log(colorsDefination);
-            setColorsDefination({ ...colorsDefination, red: colorsDefination.red +offSet });
+            setColorsDefination(colorsDefination=>({ ...colorsDefination, red: colorsDefination.red +offSet }));
         }
         if (red == 1) {
             console.log(colorsDefination);
-            setColorsDefination({ ...colorsDefination, red: colorsDefination.red- offSet });
+            setColorsDefination(colorsDefination=>({ ...colorsDefination, red: colorsDefination.red -offSet }));
         }
         if (green == 2) {
             console.log(colorsDefination);
-            setColorsDefination({ ...colorsDefination, green: colorsDefination.green + offSet });
+            setColorsDefination(colorsDefination=>({ ...colorsDefination, green: colorsDefination.green +offSet }));
         }
         if (green == 1) {
             console.log(colorsDefination);
-            setColorsDefination({ ...colorsDefination, green: colorsDefination.green - offSet });
+            setColorsDefination(colorsDefination=>({ ...colorsDefination, green: colorsDefination.green -offSet }));
         }
         if (blue == 2) {
             console.log(colorsDefination);
-            setColorsDefination({ ...colorsDefination, blue: colorsDefination.blue + offSet});
+            setColorsDefination(colorsDefination=>({ ...colorsDefination, blue: colorsDefination.blue +offSet }));
         }
         if (blue == 1) {
             console.log(colorsDefination);
-            setColorsDefination({ ...colorsDefination, blue: colorsDefination.blue - offSet });
+            setColorsDefination(colorsDefination=>({ ...colorsDefination, blue: colorsDefination.blue -offSet }));
         }
     };
     const returnColors = () => {
@@ -57,7 +80,7 @@ const ColorsDemo = () => {
             </View>
             <View>
             <Button onPress={()=>{
-                 setColorsDefination({ ...colorsDefination, blue:0,red:0,green:0 });
+                 setColorsDefination(colorsDefination=>({ ...colorsDefination, blue:0,red:0,green:0 }));
             }} title='Reset' />
             </View>
             <View style={{ marginTop: 10, height: 100, width: 100, backgroundColor: `rgb(${colorsDefination.red}, ${colorsDefination.green}, ${colorsDefination.blue})` }}></View>
