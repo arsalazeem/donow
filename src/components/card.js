@@ -1,21 +1,38 @@
 import React from 'react';
-import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
+import { Text, StyleSheet, View, FlatList, Button,Image } from 'react-native';
 const Cards = (props) => {
 console.log(props.url);
   return (
-    <View>
-      <Text>{props.url}</Text>
-    </View>
+<View style={styles.container}>
+<Image
+    source={{ uri: props.url }}
+    style={styles.image}
+  />
+  <Text style={styles.text}>{props.description}</Text>
+</View>
+
 
   );
 
 };
 
 const styles = StyleSheet.create({
-  text: {
-    color: 'black',
-    fontSize: 30
-  }
-});
-
-export default Cards;
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginVertical: 10,
+      marginHorizontal: 20,
+    },
+    text: {
+        color:'black',
+      flex: 1,
+      marginRight: 10,
+    },
+    image: {
+      width: 100,
+      height: 100,
+      borderRadius: 10,
+    },
+  });
+  export default Cards;
+  
