@@ -1,11 +1,14 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import SearchBarComp from '../components/SearchBarComp';
 import yelp from '../api/yelp';
 const Search = (props) => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState('pasta');
     const [apiresponse,setApiResponse]=useState([]);
     console.log(apiresponse);
+    useEffect(()=>{
+      handleOnSubmit();
+    },[]);
     const handleValue = (inputValue) => {
         setValue(inputValue);
     }
