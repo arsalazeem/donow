@@ -1,89 +1,66 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import Cards from '../components/card';
+const reducer = (state, action) => {
+    console.log(action);
+    let colorName = action[0];
+    console.log(colorName);
+    let amountToChange = action[1];
+    if ((state[colorName]+amountToChange)>255 || (state[colorName]+amountToChange)<0){
+        return {...state,'green':0,'blue':0,'green':0};
+    }
+    switch (colorName) {
+        case 'red':
+            return {...state,'red':state['red']+amountToChange};
+            break;
+        case 'green':
+            return {...state,'green':state['green']+amountToChange};
+            break;
+        case 'blue':
+            return {...state,'blue':state['blue']+amountToChange};
+            break;
+        case 'reset':
+            console.log(amountToChange);
+            console.log({...state,'red':amountToChange,'blue':amountToChange,'green':amountToChange});
+            return {...state,'red':amountToChange,'blue':amountToChange,'green':amountToChange};
+            break;
+        default: return state;
+    }
+}
 const ColorsDemo = () => {
-    const [colorsDefination, setColorsDefination] = useState({
-        red: 30,
-        green: 20,
-        blue: 40
+    const [state, dispatch] = useReducer(reducer, {
+        red: 0,
+        green: 0,
+        blue: 0
     });
-    const checkColor=(colorName)=>{
-        if (colorsDefination[colorName]>=255){
-            console.log({ ...colorsDefination,[colorName]: 230});
-            setColorsDefination(colorsDefination=>({ ...colorsDefination,[colorName]: 230}));
-        }
-        if (colorsDefination[colorName]<=0){
-            setColorsDefination(colorsDefination=>({ ...colorsDefination, [colorName]: 20}));
-        }
-        return true;
-    }
-    const increaeDecreaeColorOpacity = async (red, green, blue) => {
-        let colorToCheckForLimit="";
-        if (red>0){
-          colorToCheckForLimit="red";
-        }
-        else if (green>0){
-            colorToCheckForLimit="green";
-        }
-        else if (blue>0){
-            colorToCheckForLimit="blue";
-        }
-        else {
-            console.log("Nothing to check");
-        }
-       await checkColor(colorToCheckForLimit);
-        let offSet=5;
-        if (red == 2) {
-            console.log(colorsDefination);
-            setColorsDefination(colorsDefination=>({ ...colorsDefination, red: colorsDefination.red +offSet }));
-        }
-        if (red == 1) {
-            console.log(colorsDefination);
-            setColorsDefination(colorsDefination=>({ ...colorsDefination, red: colorsDefination.red -offSet }));
-        }
-        if (green == 2) {
-            console.log(colorsDefination);
-            setColorsDefination(colorsDefination=>({ ...colorsDefination, green: colorsDefination.green +offSet }));
-        }
-        if (green == 1) {
-            console.log(colorsDefination);
-            setColorsDefination(colorsDefination=>({ ...colorsDefination, green: colorsDefination.green -offSet }));
-        }
-        if (blue == 2) {
-            console.log(colorsDefination);
-            setColorsDefination(colorsDefination=>({ ...colorsDefination, blue: colorsDefination.blue +offSet }));
-        }
-        if (blue == 1) {
-            console.log(colorsDefination);
-            setColorsDefination(colorsDefination=>({ ...colorsDefination, blue: colorsDefination.blue -offSet }));
-        }
-    };
-    const returnColors = () => {
-        return `rgb(${colorsDefination.red},${colorsDefination.green} , ${colorsDefination.blue})`;
-    }
+    console.log(state);
+    const offset=15;
+
+
+
     return (
         <View>
             <View style={styles.viewStyle}>
                 <Text>Red</Text>
-                <Button onPress={()=>{increaeDecreaeColorOpacity(2,0,0)}} title='More Red' />
-                <Button onPress={()=>{increaeDecreaeColorOpacity(1,0,0)}} title='Less Red' />
+                <Button onPress={() => { dispatch(['red',offset])}} title='More Red' />
+                <Button onPress={() => {dispatch(['red',-(offset)]) }} title='Less Red' />
             </View>
             <View style={styles.viewStyle}>
                 <Text>Green</Text>
-                <Button onPress={()=>{increaeDecreaeColorOpacity(0,2,0)}} title='More Green' />
-                <Button onPress={()=>{increaeDecreaeColorOpacity(0,1,0)}} title='Less Green' />
+                <Button onPress={() => {dispatch(['green',offset]) }} title='More Green' />
+                <Button onPress={() => { dispatch(['green',-(offset)])}} title='Less Green' />
             </View>
             <View style={styles.viewStyle}>
                 <Text>Blue</Text>
-                <Button onPress={()=>{increaeDecreaeColorOpacity(0,0,2)}} title='More Blue' />
-                <Button onPress={()=>{increaeDecreaeColorOpacity(0,0,1)}} title='Less Blue' />
+                <Button onPress={() => { dispatch(['blue',offset])}} title='More Blue' />
+                <Button onPress={() => {dispatch(['blue',-(offset)]) }} title='Less Blue' />
             </View>
             <View>
-            <Button onPress={()=>{
-                 setColorsDefination(colorsDefination=>({ ...colorsDefination, blue:0,red:0,green:0 }));
-            }} title='Reset' />
+                <Button onPress={() => {
+                    dispatch(['reset',0]);
+                }} title='Reset' />
             </View>
-            <View style={{ marginTop: 10, height: 100, width: 100, backgroundColor: `rgb(${colorsDefination.red}, ${colorsDefination.green}, ${colorsDefination.blue})` }}></View>
+            <View style={{ marginTop: 10, height: 100, width: 100, backgroundColor: `rgb(${state.red}, ${state.green}, ${state.blue})` }}></View>
         </View>
 
     );
