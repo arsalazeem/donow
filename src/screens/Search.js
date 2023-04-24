@@ -3,13 +3,33 @@ import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import SearchBarComp from '../components/SearchBarComp';
 import yelp from '../api/yelp';
 const Search = (props) => {
-    const [value, setValue] = useState('something');
-
+    const [value, setValue] = useState('');
+    const [apiresponse,setApiResponse]=useState([]);
+    console.log(apiresponse);
     const handleValue = (inputValue) => {
         setValue(inputValue);
     }
-    const handleOnSubmit=()=>{
-        alert('On Submit has been called upon');
+    const handleOnSubmit= async ()=>{
+       try {
+        let response= await yelp.get('/search',{
+            params:{
+                limit:1,
+                term:value,
+                location:'san jose'
+    
+            }
+           });
+           if (response.status >= 200 && response.status < 300) {
+           setApiResponse(apiresponse => ({...apiresponse, ...response.data}));
+           }
+           else {
+            alert("Something Went wrong");
+            alert(e);
+           }
+       }
+       catch (e){
+        alert(e);
+       }
     }
     return (
         <View>
