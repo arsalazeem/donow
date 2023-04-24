@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
-const HomeScreen = (props) => {
-  console.log(props.navigation.navigate);
+import SearchBarComp from '../components/SearchBarComp';
+const Search= (props) => {
   return (
     <View>
-      <Text>This is a fresh view</Text>
+    <SearchBarComp />
     </View>
 
   );
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default Search;
