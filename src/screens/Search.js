@@ -5,7 +5,9 @@ import SearchBarComp from '../components/SearchBarComp';
 import useSearchApiResponse from '../hooks/useSearchApiResponse';
 import ResturantCard from '../components/ResturantCard';
 import {ScrollView} from 'react-native-gesture-handler';
-const Search = props => {
+const Search = ({navigation}) => {
+  console.log(navigation);
+  alert("Stop here");
   const [value, setValue] = useState('pasta');
   const [handleOnSubmit, apiresponse, errorMsg] = useSearchApiResponse();
   console.log(apiresponse);
@@ -44,6 +46,7 @@ const Search = props => {
           responseData={filterResultsByPrice(
             '$',
             apiresponse.businesses ? apiresponse.businesses : [],
+            navigation={navigation}
           )}
         />
         <ResturantCard
@@ -51,6 +54,7 @@ const Search = props => {
           responseData={filterResultsByPrice(
             '$$',
             apiresponse.businesses ? apiresponse.businesses : [],
+            navigation={navigation}
           )}
         />
         <ResturantCard
@@ -58,6 +62,7 @@ const Search = props => {
           responseData={filterResultsByPrice(
             '$$$',
             apiresponse.businesses ? apiresponse.businesses : [],
+            navigation={navigation}
           )}
         />
       </ScrollView>
