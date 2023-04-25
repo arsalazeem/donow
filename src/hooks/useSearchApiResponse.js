@@ -3,29 +3,26 @@ import yelp from '../api/yelp';
 const useSearchApiResponse = (props) => {
     const [errorMsg, setErrorMsg] = useState([]);
     const [apiresponse, setApiResponse] = useState([]);
-    // useEffect(()=>{
-    //   handleOnSubmit();
-    // },[]);
-    const handleOnSubmit = async (searchTerm) => {
+    useEffect(()=>{
+    alert("Use Effect is called");
+      handleOnSubmit("bread");
+    },[]);
+    const handleOnSubmit = async (searchTerm = "pasta") => {
         try {
+            alert(`I am called with ${searchTerm}`);
             console.log("************************************************************************************************************************************");
             console.log(searchTerm);
-            console.log("************************************************************************************************************************************");
-       
             let response = await yelp.get('/search', {
                 params: {
-                    limit: 10,
+                    limit: 20,
                     term: searchTerm,
                     location: 'san jose'
 
                 }
             });
             if (response.status >= 200 && response.status < 300) {
-                if (apiresponse.length<1){console.log(response);}
-                else{
-                    console.log(apiresponse.businesses);
-                }
-                
+                console.log(apiresponse);
+                console.log(JSON.stringify(apiresponse));
                 setApiResponse(apiresponse => ({ ...apiresponse, ...response.data }));
             }
             else {
