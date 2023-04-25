@@ -2,38 +2,14 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import SearchBarComp from '../components/SearchBarComp';
 import yelp from '../api/yelp';
+import useSearchApiResponse from '../hooks/useSearchApiResponse';
 const Search = (props) => {
-    const [value, setValue] = useState('pasta');
-    const [apiresponse,setApiResponse]=useState([]);
-    console.log(apiresponse);
-    useEffect(()=>{
-      handleOnSubmit();
-    },[]);
+    const[value,setValue]=useState('pasta');
+    const [handleOnSubmit,apiresponse,errorMsg]=useSearchApiResponse();
     const handleValue = (inputValue) => {
         setValue(inputValue);
     }
-    const handleOnSubmit= async ()=>{
-       try {
-        let response= await yelp.get('/search',{
-            params:{
-                limit:1,
-                term:value,
-                location:'san jose'
-    
-            }
-           });
-           if (response.status >= 200 && response.status < 300) {
-           setApiResponse(apiresponse => ({...apiresponse, ...response.data}));
-           }
-           else {
-            alert("Something Went wrong");
-            alert(e);
-           }
-       }
-       catch (e){
-        alert(e);
-       }
-    }
+
     return (
         <View>
             <SearchBarComp
@@ -41,11 +17,9 @@ const Search = (props) => {
                 onChange={(newValue) => {
                     handleValue(newValue);
                 }} 
-                onSubmit={()=>{
-                    handleOnSubmit();
-                }}
+                onSubmit={()=>{handleOnSubmit(value)}}
                 />
-            <Text style={styles.text}>{value}</Text>
+     <Text style={styles.text}>{value}</Text>
         </View>
 
     );

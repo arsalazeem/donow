@@ -11,8 +11,8 @@ const SearchBarComp = ({ term, onChange,onSubmit }) => {
                 placeholderTextColor='black'
                 selectionColor={'black'}
                 value={term}
-                onEndEditing={onSubmit}
                 onChangeText={onChange}
+                onSubmitEditing={onSubmit}
                 autoCapitalize='none'
                 autoCorrect={false}
             />
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginTop: 5,
         height: 50,
-        backgroundColor: 'grey',
+        backgroundColor: '#D3D3D3',
 
     }
     ,
