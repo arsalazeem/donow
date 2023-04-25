@@ -1,7 +1,10 @@
 import React from 'react';
-import {Text, StyleSheet, View, FlatList, Button, Image} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
-const ResturantCard = ({priceStatus, responseData}) => {
+import { Text, StyleSheet, View, FlatList, Button, Image, TouchableOpacity } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import { withNavigation } from 'react-navigation';
+import showResults from '../screens/ShowResults';
+const ResturantCard = ({ priceStatus, responseData ,navigation}) => {
+  console.log(navigation);
   const formatName = str => {
     let arr = str.replace(/-/g, ' ').split(' ');
     arr = arr.map(word => word.charAt(0).toUpperCase() + word.slice(1));
@@ -20,20 +23,27 @@ const ResturantCard = ({priceStatus, responseData}) => {
         horizontal
         data={responseData}
         keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           return (
             <View>
-              <View style={styles.fullCardStyle}>
-                <Image
-                  style={styles.pictureStyle}
-                  source={{uri: item.image_url}}
-                />
-                <Text style={styles.textStyle}>{formatName(item.alias)}</Text>
-              </View>
-              <View>
-              <Text style={styles.reviewsAndRating}>{`${item.rating} Stars, ${item.review_count} Reviews`}</Text>
-              </View>
+              <TouchableOpacity onPress={()=>{
+                navigation.navigate('bDetails');
+              }}>
+                <View>
+                  <View style={styles.fullCardStyle}>
+                    <Image
+                      style={styles.pictureStyle}
+                      source={{ uri: item.image_url }}
+                    />
+                    <Text style={styles.textStyle}>{formatName(item.alias)}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.reviewsAndRating}>{`${item.rating} Stars, ${item.review_count} Reviews`}</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
             </View>
+
           );
         }}
       />
@@ -42,13 +52,13 @@ const ResturantCard = ({priceStatus, responseData}) => {
 };
 
 const styles = StyleSheet.create({
-  cardsContainer:{
-     marginLeft:10
+  cardsContainer: {
+    marginLeft: 10
   },
-  flatListStyle:{
-   borderBottomColor:"#c21760",
-   borderBottomWidth:0.1,
-   paddingBottom:10,
+  flatListStyle: {
+    borderBottomColor: "#c21760",
+    borderBottomWidth: 0.1,
+    paddingBottom: 10,
   },
   fullCardStyle: {
     marginTop: 10,
@@ -77,12 +87,12 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
     fontWeight: 'bold',
   },
-  reviewsAndRating:{
-    fontSize:12,
+  reviewsAndRating: {
+    fontSize: 12,
     color: '#c21760',
     fontWeight: 'bold',
     paddingLeft: 2,
   }
 });
-
 export default ResturantCard;
+
