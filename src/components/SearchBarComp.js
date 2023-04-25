@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginLeft:5,
         marginTop: 5,
         height: 50,
-        backgroundColor: '"#d9dbda"',
+        backgroundColor: "#D3D3D3",
 
     }
     ,

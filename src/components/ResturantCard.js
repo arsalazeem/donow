@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
     fontSize: 2,
     height: 200,
-    width: 250,
+    width: 280,
     flexDirection: 'column',
   },
   pictureStyle: {
