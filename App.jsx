@@ -8,7 +8,14 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen
+      name="Search"
+      component={Search}
+      options={{
+        title: "Businesses Search",
+        headerTitleAlign: "center"
+      }}
+    />
       </Stack.Navigator>
     </NavigationContainer>
   );

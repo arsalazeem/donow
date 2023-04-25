@@ -12,36 +12,48 @@ const ResturantCard = ({priceStatus, responseData}) => {
       return arr[0] + ' ' + arr[1] + ' ' + arr[2];
     }
   };
-  return responseData.length >0 ? (
-    <View>
+  return responseData.length > 0 ? (
+    <View style={styles.cardsContainer}>
       <Text style={styles.text}>{priceStatus}</Text>
-      <FlatList
-      
+      <FlatList style={styles.flatListStyle}
+        showsHorizontalScrollIndicator={false}
         horizontal
         data={responseData}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => {
           return (
-            <View style={styles.fullCardStyle}>
-              <Image
-                style={styles.pictureStyle}
-                source={{uri: item.image_url}}
-              />
-              <Text style={styles.textStyle}>{formatName(item.alias)}</Text>
+            <View>
+              <View style={styles.fullCardStyle}>
+                <Image
+                  style={styles.pictureStyle}
+                  source={{uri: item.image_url}}
+                />
+                <Text style={styles.textStyle}>{formatName(item.alias)}</Text>
+              </View>
+              <View>
+              <Text style={styles.reviewsAndRating}>{`${item.rating} Stars, ${item.review_count} Reviews`}</Text>
+              </View>
             </View>
           );
         }}
       />
     </View>
-  ):null;
+  ) : null;
 };
 
 const styles = StyleSheet.create({
+  cardsContainer:{
+     marginLeft:10
+  },
+  flatListStyle:{
+   borderBottomColor:"#c21760",
+   borderBottomWidth:0.1,
+   paddingBottom:10,
+  },
   fullCardStyle: {
     marginTop: 10,
     paddingLeft: 2,
     fontSize: 2,
-    marginLeft: 5,
     height: 200,
     width: 250,
     flexDirection: 'column',
@@ -63,9 +75,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'black',
     paddingLeft: 2,
-    marginLeft: 5,
     fontWeight: 'bold',
   },
+  reviewsAndRating:{
+    fontSize:12,
+    color: '#c21760',
+    fontWeight: 'bold',
+    paddingLeft: 2,
+  }
 });
 
 export default ResturantCard;

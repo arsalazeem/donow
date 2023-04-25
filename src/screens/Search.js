@@ -1,4 +1,5 @@
 import React, {useEffect, useReducer, useState} from 'react';
+import { ActivityIndicator } from 'react-native';
 import {Text, StyleSheet, View, FlatList, Button} from 'react-native';
 import SearchBarComp from '../components/SearchBarComp';
 import useSearchApiResponse from '../hooks/useSearchApiResponse';
@@ -28,12 +29,12 @@ const Search = props => {
           handleOnSubmit(value);
         }}
       />
-      {apiresponse.businesses ? (apiresponse.businesses.length > 1 ? (
+      {apiresponse.businesses && apiresponse.businesses.length > 0 ? (
         <Text style={styles.text}>{`Nearby Resturants`}</Text>
       ) : (
-        <Text style={styles.text}>{`Sorry ${value} is not available`}</Text>
-      )) : (
-        <Text style={styles.text}>{`Search for Your Favourite Restaurants`}</Text>
+        <View style={styles.loader}>
+          <ActivityIndicator size={100} color="#c21760" />
+        </View>
       )}
       
      
@@ -65,9 +66,13 @@ const Search = props => {
 };
 
 const styles = StyleSheet.create({
+    loader:{
+        marginTop:"40%",
+        alignSelf:'center'
+    },
   container: {
     flex: 1,
-  },
+    backgroundColor:"#F5F5F5"  },
   text: {
     fontSize: 18,
     marginTop: 10,

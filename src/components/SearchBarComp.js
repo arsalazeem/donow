@@ -27,18 +27,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         color: 'black',
-        borderRadius: 5,
+        borderRadius: 15,
         width:"97%",
         marginLeft:5,
         marginTop: 5,
         height: 50,
-        backgroundColor: '#D3D3D3',
+        backgroundColor: '"#d9dbda"',
 
     }
     ,
     searchIcon: {
         alignSelf: 'center',
-        marginHorizontal: 15,
+        marginLeft:15,
         width: 35,
         height: 35
     }

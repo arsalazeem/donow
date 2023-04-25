@@ -4,12 +4,12 @@ const useSearchApiResponse = (props) => {
     const [errorMsg, setErrorMsg] = useState([]);
     const [apiresponse, setApiResponse] = useState([]);
     useEffect(()=>{
-    alert("Use Effect is called");
+    // alert("Use Effect is called");
       handleOnSubmit("bread");
     },[]);
     const handleOnSubmit = async (searchTerm = "pasta") => {
         try {
-            alert(`I am called with ${searchTerm}`);
+            // alert(`I am called with ${searchTerm}`);
             console.log("************************************************************************************************************************************");
             console.log(searchTerm);
             let response = await yelp.get('/search', {
