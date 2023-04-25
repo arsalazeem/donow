@@ -14,14 +14,18 @@ const useSearchApiResponse = (props) => {
        
             let response = await yelp.get('/search', {
                 params: {
-                    limit: 1,
+                    limit: 10,
                     term: searchTerm,
                     location: 'san jose'
 
                 }
             });
             if (response.status >= 200 && response.status < 300) {
-                console.log(response);
+                if (apiresponse.length<1){console.log(response);}
+                else{
+                    console.log(apiresponse.businesses);
+                }
+                
                 setApiResponse(apiresponse => ({ ...apiresponse, ...response.data }));
             }
             else {
