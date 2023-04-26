@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-const TextInputComponent= (props) => {
+const TextInputComponent= ({onChangeTextProps,placeholder}) => {
   return (
       <TextInput
+        onChangeText={onChangeTextProps}
         style={styles.input}
-        placeholder={props.placeholder}
+        placeholder={placeholder}
         keyboardType="numeric"
       />
   );
@@ -13,6 +14,7 @@ const TextInputComponent= (props) => {
 
 const styles = StyleSheet.create({
   input: {
+    marginVertical:5,
     fontSize:12,
     color:'black',
     borderRadius:8,

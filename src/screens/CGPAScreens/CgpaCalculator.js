@@ -2,26 +2,42 @@ import React, { useState } from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ButtonComponent from '../components/ ButtonComponent';
-const GpaCalculator = ({navigation}) => {
-  cosnt [value,setValue]=useState(0);
-  // console.log(props.navigation);
-  const handleNaviation=(navigatorObject,screenToNavigate)=>{
-    console.log(screenToNavigate);
-    navigation.navigate(screenToNavigate);
+import ButtonComponent from '../../components/ ButtonComponent';
+const CgpaCalculator = ({navigation}) => {
+
+  const [iValue,setValue]=useState(0);
+  console.log(iValue);
+  const handleEmptyValue=()=>{
+    if (iValue<2 || iValue >10){
+      alert("You can only enter number of subjects from 2 to 10");
+      return false;
+    }
+    else {
+      return true;
+    }
   }
+  const handleNaviation = (
+    navigatorObject,
+    screenToNavigate,
+    queryParams = {},
+  ) => {
+    if (handleEmptyValue()==true){
+    navigation.navigate(screenToNavigate, queryParams);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.parentView}>
       <TextInput
         style={styles.input}
-        valu
-        placeholder="Number of Subjects"
-        keyboardType="numeric"
+        value={iValue}
+        onChangeText={(value)=>setValue(value)}
+        placeholder="Number of Completed Semesters"
+        keyboardType='numeric'
       />
       <View style={styles.buttonParent}>
      <ButtonComponent title="Continue" Pheight={100} Pwidth={100} onPressProp={()=>{
-      handleNaviation(navigation,"CgpaCal",{""});
+      handleNaviation(navigation,"CgpaCal",{"numberOfSubjects":iValue});
      }}/>
      </View>
       </View>
@@ -59,4 +75,4 @@ justifyContent:'space-around'
   
 });
 
-export default GpaCalculator;
+export default CgpaCalculator;

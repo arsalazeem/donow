@@ -2,10 +2,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
-import GpaCalculator from './src/screens/GpaCalculator';
-import CgpaCalculator from './src/screens/CgpaCalculator';
-import GpaCalculationScreen from './src/screens/GpaCalculationScreen';
-import CGpaCalculationScreen from './src/screens/CGpaCalculationScreen';
+import GpaCalculator from './src/screens/GpaScreens/GpaCalculator';
+import CgpaCalculator from './src/screens/CGPAScreens/CgpaCalculator';
+import GpaCalculationScreen from './src/screens/GpaScreens/GpaCalculationScreen';
+import CGpaCalculationScreen from './src/screens/CGPAScreens/CGpaCalculationScreen';
 const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
@@ -63,7 +63,7 @@ const AppNavigator = () => {
       name="GpaCal"
       component={GpaCalculationScreen}
       options={{
-        title: "CGPA Calculation",
+        title: "GPA Calculation",
         headerTitleAlign: "center",
         headerTintColor: "white",
         headerStyle:{
