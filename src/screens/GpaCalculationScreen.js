@@ -2,23 +2,14 @@ import React from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ButtonComponent from '../components/ ButtonComponent';
+import TextInputComponent from '../components/TextInputComponent';
 const GpaCalculationScreen = (props) => {
-  console.log(props.navigation.navigate);
   return (
-    <View style={styles.container}>
-      <View style={styles.parentView}>
-      <TextInput
-        style={styles.input}
-        placeholder="Number of Subjects"
-        keyboardType="numeric"
-      />
-      <View style={styles.buttonParent}>
-     <ButtonComponent title="Continue" Pheight={100} Pwidth={100} onPressProp={()=>console.log(" i am pressed")}/>
-     </View>
+    <View>
+    <SafeAreaView> 
+      <TextInputComponent placeholder='Subject#1' />
+      </SafeAreaView>
       </View>
-   
-    </View>
   );
 };
 

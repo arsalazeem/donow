@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ButtonComponent from '../components/ ButtonComponent';
-const GpaCalculator = (props) => {
-  console.log(props.navigation.navigate);
+const GpaCalculator = ({navigation}) => {
+  cosnt [value,setValue]=useState(0);
+  // console.log(props.navigation);
+  const handleNaviation=(navigatorObject,screenToNavigate)=>{
+    console.log(screenToNavigate);
+    navigation.navigate(screenToNavigate);
+  }
   return (
     <View style={styles.container}>
       <View style={styles.parentView}>
       <TextInput
         style={styles.input}
+        valu
         placeholder="Number of Subjects"
         keyboardType="numeric"
       />
       <View style={styles.buttonParent}>
-     <ButtonComponent title="Continue" Pheight={100} Pwidth={100} onPressProp={()=>console.log(" i am pressed")}/>
+     <ButtonComponent title="Continue" Pheight={100} Pwidth={100} onPressProp={()=>{
+      handleNaviation(navigation,"CgpaCal",{""});
+     }}/>
      </View>
       </View>
    

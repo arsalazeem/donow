@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
 import GpaCalculator from './src/screens/GpaCalculator';
 import CgpaCalculator from './src/screens/CgpaCalculator';
+import GpaCalculationScreen from './src/screens/GpaCalculationScreen';
+import CGpaCalculationScreen from './src/screens/CGpaCalculationScreen';
 const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
@@ -38,6 +40,30 @@ const AppNavigator = () => {
       component={CgpaCalculator}
       options={{
         title: "CGPA Calculator",
+        headerTitleAlign: "center",
+        headerTintColor: "white",
+        headerStyle:{
+          backgroundColor:"#343a40"
+        }
+      }}
+    />
+     <Stack.Screen
+      name="CgpaCal"
+      component={CGpaCalculationScreen}
+      options={{
+        title: "CGPA Calculation",
+        headerTitleAlign: "center",
+        headerTintColor: "white",
+        headerStyle:{
+          backgroundColor:"#343a40"
+        }
+      }}
+    />
+     <Stack.Screen
+      name="GpaCal"
+      component={GpaCalculationScreen}
+      options={{
+        title: "CGPA Calculation",
         headerTitleAlign: "center",
         headerTintColor: "white",
         headerStyle:{
