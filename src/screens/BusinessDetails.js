@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
-const BusinessDetails = () => {
+import yelp from '../api/yelp';
+const BusinessDetails = ({route}) => {
+  useEffect(async () => {
+   let response=await yelp.get(`search/${route.params.bus_id}`, {
+    params: {
+        limit: 20,
+        term: searchTerm,
+        location: 'san jose'
+
+    }
+});
+  });
   return (
     <View>
-      <Text>This is a fresh view</Text>
+      <Text>{` i have recieved this param ${route.params.bus_id}`}</Text>
     </View>
 
   );

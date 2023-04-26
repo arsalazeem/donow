@@ -27,7 +27,7 @@ const ResturantCard = ({ priceStatus, responseData ,navigation}) => {
           return (
             <View>
               <TouchableOpacity onPress={()=>{
-                navigation.navigate('bDetails');
+                navigation.navigate('bDetails',{"bus_id":item.id});
               }}>
                 <View>
                   <View style={styles.fullCardStyle}>

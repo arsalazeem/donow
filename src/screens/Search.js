@@ -6,8 +6,6 @@ import useSearchApiResponse from '../hooks/useSearchApiResponse';
 import ResturantCard from '../components/ResturantCard';
 import {ScrollView} from 'react-native-gesture-handler';
 const Search = ({navigation}) => {
-  console.log(navigation);
-  alert("Stop here");
   const [value, setValue] = useState('pasta');
   const [handleOnSubmit, apiresponse, errorMsg] = useSearchApiResponse();
   console.log(apiresponse);
@@ -46,24 +44,24 @@ const Search = ({navigation}) => {
           responseData={filterResultsByPrice(
             '$',
             apiresponse.businesses ? apiresponse.businesses : [],
-            navigation={navigation}
           )}
+          navigation={navigation}
         />
         <ResturantCard
           priceStatus="Bit Pricer"
           responseData={filterResultsByPrice(
             '$$',
             apiresponse.businesses ? apiresponse.businesses : [],
-            navigation={navigation}
           )}
+          navigation={navigation}
         />
         <ResturantCard
           priceStatus="Big Spender!"
           responseData={filterResultsByPrice(
             '$$$',
             apiresponse.businesses ? apiresponse.businesses : [],
-            navigation={navigation}
           )}
+          navigation={navigation}
         />
       </ScrollView>
     </View>
