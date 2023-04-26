@@ -1,18 +1,18 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
-const HomeScreen = (props) => {
-  console.log(props.navigation.navigate);
+import ButtonComponent from '../components/ ButtonComponent';
+const HomeScreen = ({navigation}) => {
+  // console.log(props.navigation.navigate);
+  const handleNaviation=(screenToNavigate)=>{
+    console.log(screenToNavigate);
+    navigation.navigate(screenToNavigate);
+  }
   return (
     <View style={styles.container}>
       <View style={styles.buttonParent}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.text}>GPA Calculator</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.text}>CGPA Calculator</Text>
-        </TouchableOpacity>
+      <ButtonComponent title="GPA Calculator" onPressProp={()=>{handleNaviation('Gpa')}} />
+      <ButtonComponent title="CGPA Calculator" onPressProp={()=>{handleNaviation('Cgpa')}} />
       </View>
     </View>
   );
