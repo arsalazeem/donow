@@ -7,14 +7,16 @@ import {
 } from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import TextInputComponent from '../../components/TextInputComponent';
-
+import ButtonComponent from '../../components/ ButtonComponent';
 // let state = {
 //   1: {},
 // };
 const reducer = (state, action) => {
   let actionType = action.actionType;
   let currentKey = action.currentKey;
-  let subjectCreditHours = action.subjectCreditHours ? action.subjectCreditHours : 0;
+  let subjectCreditHours = action.subjectCreditHours
+    ? action.subjectCreditHours
+    : 0;
   let subjectGpa = action.subjectGpa ? action.subjectGpa : 0;
   switch (actionType) {
     case 'textChangeGpa':
@@ -44,8 +46,44 @@ const CGpaCalculationScreen = props => {
   const subjects = [];
   const subjectsGPA = [];
   console.log(state);
+  const handleEmptyValue = () => {
+    for (let data in subjects){
+     let indexToCheck=Number(data)+1;
+     if (indexToCheck in state){
+         console.log(indexToCheck);
+     }
+     else {
+         alert(`Please provide details for Subject ${indexToCheck}`);
+         return ;
+     }
+    }
+  };
+  const handleCalculation = () => {
+    handleEmptyValue();
+    let CalObject = state;
+    k = 1;
+    for (data in CalObject) {
+      currentData = CalObject[data];
+      if (
+        currentData.subjectCreditHours &&
+        currentData.subjectCreditHours > 0 &&
+        currentData.subjectGpa &&
+        currentData.subjectGpa > 0
+      ) {
+      } else {
+        if (
+          currentData.subjectCreditHours ||
+          currentData.subjectCreditHours <= 0
+        ) {
+          alert(`Please provide Credit Hours for Subject  ${k}`);
+        } else {
+          alert(`Please provide  GPA for Subject  ${k}`);
+        }
+      }
+      k++;
+    }
+  };
   const handleTextChange = (type, currentValue, currentKey) => {
-    // alert(type);
     let dispatchObject = {
       currentKey: currentKey,
     };
@@ -56,7 +94,7 @@ const CGpaCalculationScreen = props => {
       dispatchObject['actionType'] = 'textChangeCreditHours';
       dispatchObject['subjectCreditHours'] = currentValue;
     }
-    console.log("Dispatch Object is");
+    console.log('Dispatch Object is');
     console.log(dispatchObject);
     dispatch(dispatchObject);
   };
@@ -64,7 +102,7 @@ const CGpaCalculationScreen = props => {
     subjects.push(
       <TextInputComponent
         onChangeTextProps={value => {
-          handleTextChange("textChangeGpa",value,i);
+          handleTextChange('textChangeGpa', value, i);
         }}
         key={i}
         placeholder={`Subject#${i} GPA`}
@@ -72,12 +110,12 @@ const CGpaCalculationScreen = props => {
     );
     subjectsGPA.push(
       <TextInputComponent
-      onChangeTextProps={value => {
-        handleTextChange("textChangeCreditHours",value,i);
-      }}
+        onChangeTextProps={value => {
+          handleTextChange('textChangeCreditHours', value, i);
+        }}
         style={{top: 10}}
         key={i}
-        placeholder={`Subejt#${i} Credit Hours`}
+        placeholder={`Subject#${i} Credit Hours`}
       />,
     );
   }
@@ -89,6 +127,12 @@ const CGpaCalculationScreen = props => {
             <View style={styles.gpaRow}>{subjects}</View>
             <View style={styles.creditHoursRow}>{subjectsGPA}</View>
           </View>
+          <ButtonComponent
+            title="Calculate"
+            onPressProp={() => {
+              handleCalculation();
+            }}
+          />
         </ScrollView>
       </SafeAreaView>
     </View>

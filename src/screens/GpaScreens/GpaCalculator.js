@@ -29,7 +29,7 @@ const GpaCalculator = ({navigation}) => {
       <View style={styles.parentView}>
         <TextInput
           value={iValue}
-          onChangeText={value => setValue(value)}
+          onChangeText={value => setValue(value.toString())}
           style={styles.input}
           placeholder="Number of Subjects"
           keyboardType="numeric"
