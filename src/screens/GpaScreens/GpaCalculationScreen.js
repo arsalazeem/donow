@@ -8,6 +8,8 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import TextInputComponent from '../../components/TextInputComponent';
 import ButtonComponent from '../../components/ ButtonComponent';
+import calculateGpa from '../../utilities/Calculations';
+import ModelView from '../../components/ModelView';
 // let state = {
 //   1: {},
 // };
@@ -60,6 +62,7 @@ const CGpaCalculationScreen = props => {
   };
   const handleCalculation = () => {
     handleEmptyValue();
+    let noOfIssues=0;
     let CalObject = state;
     k = 1;
     for (data in CalObject) {
@@ -76,11 +79,18 @@ const CGpaCalculationScreen = props => {
           currentData.subjectCreditHours <= 0
         ) {
           alert(`Please provide Credit Hours for Subject  ${k}`);
+          noOfIssues++;
         } else {
           alert(`Please provide  GPA for Subject  ${k}`);
+          noOfIssues++;
         }
+        return ;
       }
       k++;
+    }
+    if (noOfIssues<1){
+   let calcualtedGpa= calculateGpa(state);
+   alert(calcualtedGpa);
     }
   };
   const handleTextChange = (type, currentValue, currentKey) => {
