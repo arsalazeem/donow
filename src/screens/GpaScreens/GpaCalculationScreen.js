@@ -42,7 +42,7 @@ const reducer = (state, action) => {
   }
 };
 
-const CGpaCalculationScreen = props => {
+const GpaCalculationScreen = props => {
   const [state, dispatch] = useReducer(reducer, {});
   const numberOfSubjects = props.route.params.numberOfSubjects;
   const subjects = [];
@@ -115,7 +115,7 @@ const CGpaCalculationScreen = props => {
           handleTextChange('textChangeGpa', value, i);
         }}
         key={i}
-        placeholder={`Subject#${i} GPA`}
+        placeholder={`Subject#${i} Marks`}
       />,
     );
     subjectsGPA.push(
@@ -174,4 +174,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CGpaCalculationScreen;
+export default GpaCalculationScreen;

@@ -30,7 +30,7 @@ const CgpaCalculator = ({navigation}) => {
       <View style={styles.parentView}>
       <TextInput
         style={styles.input}
-        value={iValue}
+        value={iValue.toString()}
         onChangeText={(value)=>setValue(value)}
         placeholder="Number of Completed Semesters"
         keyboardType='numeric'
