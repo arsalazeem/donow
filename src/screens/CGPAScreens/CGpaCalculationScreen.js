@@ -89,7 +89,7 @@ const CGpaCalculationScreen = props => {
       k++;
     }
     if (noOfIssues<1){
-   let calcualtedGpa= calculateGpa(state,'cgpa');
+   let calcualtedGpa= calculateGpa(state,null,'cgpa');
    alert(calcualtedGpa);
     }
   };

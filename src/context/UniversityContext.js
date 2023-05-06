@@ -4,9 +4,13 @@ const UniVersityContext = React.createContext();
 const UniversityContextProvider = ({children}) => {
   const [uniName, SetuniName] = useState('');
   const handleUniName = currentUniName => {
-    SetuniName(uniName);
+    SetuniName(currentUniName);
   };
-  <UniVersityContext.Provider value={{uniName,handleUniName}}>{children}</UniVersityContext.Provider>;
+  return (
+    <UniVersityContext.Provider value={{uniName, handleUniName}}>
+      {children}
+    </UniVersityContext.Provider>
+  );
 };
 
-export {UniVersityContext,UniversityContextProvider};
+export {UniVersityContext, UniversityContextProvider};

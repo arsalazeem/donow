@@ -1,18 +1,11 @@
-import React, {useReducer} from 'react';
-import {Text, StyleSheet, View, FlatList, Button} from 'react-native';
-import {
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import React, {useReducer, useContext} from 'react';
+import {Text, StyleSheet, View, FlatList, Button, Alert} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import TextInputComponent from '../../components/TextInputComponent';
 import ButtonComponent from '../../components/ ButtonComponent';
 import calculateGpa from '../../utilities/Calculations';
-import ModelView from '../../components/ModelView';
-// let state = {
-//   1: {},
-// };
+import {UniVersityContext} from '../../context/UniversityContext';
 const reducer = (state, action) => {
   let actionType = action.actionType;
   let currentKey = action.currentKey;
@@ -42,27 +35,28 @@ const reducer = (state, action) => {
   }
 };
 
-const GpaCalculationScreen = props => {
+const GpaCalculationScreen = props => {            //see in handleCalculation and trace the issues in calculations.
+  const {uniName, handleUniName} = useContext(UniVersityContext);
+  console.log(uniName);
   const [state, dispatch] = useReducer(reducer, {});
   const numberOfSubjects = props.route.params.numberOfSubjects;
   const subjects = [];
   const subjectsGPA = [];
   console.log(state);
   const handleEmptyValue = () => {
-    for (let data in subjects){
-     let indexToCheck=Number(data)+1;
-     if (indexToCheck in state){
-         console.log(indexToCheck);
-     }
-     else {
-         alert(`Please provide details for Subject ${indexToCheck}`);
-         return ;
-     }
+    for (let data in subjects) {
+      let indexToCheck = Number(data) + 1;
+      if (indexToCheck in state) {
+        console.log(indexToCheck);
+      } else {
+        alert(`Please provide details for Subject ${indexToCheck}`);
+        return;
+      }
     }
   };
   const handleCalculation = () => {
     handleEmptyValue();
-    let noOfIssues=0;
+    let noOfIssues = 0;
     let CalObject = state;
     k = 1;
     for (data in CalObject) {
@@ -84,13 +78,13 @@ const GpaCalculationScreen = props => {
           alert(`Please provide  GPA for Subject  ${k}`);
           noOfIssues++;
         }
-        return ;
+        return;
       }
       k++;
     }
-    if (noOfIssues<1){
-   let calcualtedGpa= calculateGpa(state);
-   alert(calcualtedGpa);
+    if (noOfIssues < 1) {
+      let calcualtedGpa = calculateGpa(state,uniName,'gpa');
+      alert(calcualtedGpa);
     }
   };
   const handleTextChange = (type, currentValue, currentKey) => {

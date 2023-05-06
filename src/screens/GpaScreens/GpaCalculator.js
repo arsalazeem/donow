@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Text, StyleSheet, View, FlatList, Button} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ButtonComponent from '../../components/ ButtonComponent';
+import { UniVersityContext } from '../../context/UniversityContext';
 const GpaCalculator = ({navigation}) => {
+  const {uniName,handleUniName}=useContext(UniVersityContext);
   const [iValue, setValue] = useState(0);
 
   const handleEmptyValue=()=>{

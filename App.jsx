@@ -26,7 +26,7 @@ const AppNavigator = () => {
       }}
     />
       <Stack.Screen
-      name="Select Type"
+      name="SelectType"
       component={HomeScreen}
       options={{
         title: "Select Type",
@@ -91,4 +91,11 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;
+const App = AppNavigator;
+export default () => {
+  return (
+    <UniversityContextProvider >
+    <App />
+    </UniversityContextProvider>
+  );
+};
