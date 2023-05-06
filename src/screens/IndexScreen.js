@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
+import { BlogContext } from '../context/BlogContext';
 const IndexScreen = (props) => {
+  const blogPosts=useContext(BlogContext);
   return (
     <View style={styles.container}>
-         <Text style={{color:"black"}}>I am on the IndexScreen </Text>
+         <FlatList 
+         data={blogPosts}
+         renderItem={({item})=>{
+          return <Text>{item.title}</Text>
+         }}
+         />
       </View>
   );
 };
