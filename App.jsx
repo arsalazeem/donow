@@ -6,6 +6,8 @@ import GpaCalculator from './src/screens/GpaScreens/GpaCalculator';
 import CgpaCalculator from './src/screens/CGPAScreens/CgpaCalculator';
 import GpaCalculationScreen from './src/screens/GpaScreens/GpaCalculationScreen';
 import CGpaCalculationScreen from './src/screens/CGPAScreens/CGpaCalculationScreen';
+import SelectUni from './src/screens/SelectUni';
+import { UniversityContextProvider } from './src/context/UniversityContext';
 const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
@@ -13,6 +15,18 @@ const AppNavigator = () => {
       <Stack.Navigator>
       <Stack.Screen
       name="Home"
+      component={SelectUni}
+      options={{
+        title: "Select University",
+        headerTitleAlign: "center",
+        headerTintColor: "white",
+        headerStyle:{
+          backgroundColor:"#343a40"
+        }
+      }}
+    />
+      <Stack.Screen
+      name="Select Type"
       component={HomeScreen}
       options={{
         title: "Select Type",
@@ -35,6 +49,7 @@ const AppNavigator = () => {
         }
       }}
     />
+ 
       <Stack.Screen
       name="Cgpa"
       component={CgpaCalculator}
