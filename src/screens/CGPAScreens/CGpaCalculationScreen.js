@@ -2,17 +2,12 @@ import React, {useReducer, useState} from 'react';
 import {Text, StyleSheet, View, FlatList, Button} from 'react-native';
 import {
   ScrollView,
-  TextInput,
-  TouchableOpacity,
 } from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import TextInputComponent from '../../components/TextInputComponent';
 import ButtonComponent from '../../components/ ButtonComponent';
 import calculateGpa from '../../utilities/Calculations';
-import ModelView from '../../components/ModelView';
-// let state = {
-//   1: {},
-// };
+import BannerAdComponent from '../../components/BannerAd/BannerAdComponent';
 const reducer = (state, action) => {
   let actionType = action.actionType;
   let currentKey = action.currentKey;
@@ -137,6 +132,7 @@ const CGpaCalculationScreen = props => {
     <View style={styles.parentView}>
       <SafeAreaView>
         <ScrollView>
+        <BannerAdComponent />
           <View style={styles.inputRows}>
             <View style={styles.gpaRow}>{subjects}</View>
             <View style={styles.creditHoursRow}>{subjectsGPA}</View>
@@ -148,6 +144,7 @@ const CGpaCalculationScreen = props => {
             }}
           />
           {finalCgpa>0?<Text style={styles.finalGpaStyle}>{`Your CGPA is ${finalCgpa}`}</Text>:""} 
+          <BannerAdComponent />
         </ScrollView>
       </SafeAreaView>
     </View>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {StyleSheet, View, FlatList, Button } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 import ButtonComponent from '../../components/ ButtonComponent';
+import BannerAdComponent from '../../components/BannerAd/BannerAdComponent';
 const CgpaCalculator = ({navigation}) => {
 
   const [iValue,setValue]=useState(0);
@@ -40,6 +40,7 @@ const CgpaCalculator = ({navigation}) => {
      <ButtonComponent title="Continue" Pheight={100} Pwidth={100} onPressProp={()=>{
       handleNaviation(navigation,"CgpaCal",{"numberOfSubjects":iValue});
      }}/>
+     <BannerAdComponent />
      </View>
       </View>
    

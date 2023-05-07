@@ -1,4 +1,8 @@
 {
   "name": "donow",
-  "displayName": "donow"
+  "displayName": "donow",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-1844809599359136~8213803769",
+    "ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
+  }
 }

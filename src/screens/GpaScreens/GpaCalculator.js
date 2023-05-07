@@ -1,11 +1,9 @@
-import React, { useContext, useState } from 'react';
-import {Text, StyleSheet, View, FlatList, Button} from 'react-native';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React, {useState } from 'react';
+import {StyleSheet, View} from 'react-native';
+import {TextInput} from 'react-native-gesture-handler';
 import ButtonComponent from '../../components/ ButtonComponent';
-import { UniVersityContext } from '../../context/UniversityContext';
+import BannerAdComponent from '../../components/BannerAd/BannerAdComponent';
 const GpaCalculator = ({navigation}) => {
-
   const [iValue, setValue] = useState(0);
   const handleEmptyValue=()=>{
     if (iValue<2 || iValue >10){
@@ -45,6 +43,7 @@ const GpaCalculator = ({navigation}) => {
               handleNaviation(navigation, 'GpaCal', {numberOfSubjects: iValue});
             }}
           />
+       <BannerAdComponent />
         </View>
       </View>
     </View>

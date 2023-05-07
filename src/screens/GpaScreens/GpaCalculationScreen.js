@@ -6,6 +6,7 @@ import TextInputComponent from '../../components/TextInputComponent';
 import ButtonComponent from '../../components/ ButtonComponent';
 import calculateGpa from '../../utilities/Calculations';
 import {UniVersityContext} from '../../context/UniversityContext';
+import BannerAdComponent from '../../components/BannerAd/BannerAdComponent';
 const reducer = (state, action) => {
   let actionType = action.actionType;
   let currentKey = action.currentKey;
@@ -131,18 +132,21 @@ const GpaCalculationScreen = props => {
   return (
     <View style={styles.parentView}>
       <SafeAreaView>
+      <BannerAdComponent />
         <ScrollView>
           <View style={styles.inputRows}>
             <View style={styles.gpaRow}>{subjects}</View>
             <View style={styles.creditHoursRow}>{subjectsGPA}</View>
           </View>
           <View>
+          <BannerAdComponent />
           <ButtonComponent
             title="Calculate"
             onPressProp={() => {
               handleCalculation();
             }}
           />
+          
          {finalgpa>0?<Text style={styles.finalGpaStyle}>{`Your GPA is ${finalgpa}`}</Text>:""} 
           </View>
         </ScrollView>

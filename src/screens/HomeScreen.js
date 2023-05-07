@@ -1,19 +1,21 @@
-import React from 'react';
-import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {React} from 'react';
+import { StyleSheet, View, FlatList, Button } from 'react-native';
+
 import ButtonComponent from '../components/ ButtonComponent';
+import BannerAdComponent from '../components/BannerAd/BannerAdComponent';
 const HomeScreen = ({navigation}) => {
-  // console.log(props.navigation.navigate);
   const handleNaviation=(screenToNavigate)=>{
     console.log(screenToNavigate);
     navigation.navigate(screenToNavigate);
   }
   return (
     <View style={styles.container}>
+ 
       <View style={styles.buttonParent}>
       <ButtonComponent title="GPA Calculator" onPressProp={()=>{handleNaviation('Gpa')}} />
       <ButtonComponent title="CGPA Calculator" onPressProp={()=>{handleNaviation('Cgpa')}} />
       </View>
+      <BannerAdComponent />
     </View>
   );
 };
