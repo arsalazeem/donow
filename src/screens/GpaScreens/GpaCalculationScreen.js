@@ -1,4 +1,4 @@
-import React, {useReducer, useContext} from 'react';
+import React, {useReducer, useContext, useState, useEffect} from 'react';
 import {Text, StyleSheet, View, FlatList, Button, Alert} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -35,8 +35,10 @@ const reducer = (state, action) => {
   }
 };
 
-const GpaCalculationScreen = props => {            //see in handleCalculation and trace the issues in calculations.
+const GpaCalculationScreen = props => {  
+         //see in handleCalculation and trace the issues in calculations.
   const {uniName, handleUniName} = useContext(UniVersityContext);
+  const [finalgpa,setFinalGpa]=useState(0);
   console.log(uniName);
   const [state, dispatch] = useReducer(reducer, {});
   const numberOfSubjects = props.route.params.numberOfSubjects;
@@ -84,7 +86,8 @@ const GpaCalculationScreen = props => {            //see in handleCalculation an
     }
     if (noOfIssues < 1) {
       let calcualtedGpa = calculateGpa(state,uniName,'gpa');
-      alert(calcualtedGpa);
+      setFinalGpa(calcualtedGpa);
+      alert(`Your GPA is ${calcualtedGpa}`);
     }
   };
   const handleTextChange = (type, currentValue, currentKey) => {
@@ -107,6 +110,7 @@ const GpaCalculationScreen = props => {            //see in handleCalculation an
       <TextInputComponent
         onChangeTextProps={value => {
           handleTextChange('textChangeGpa', value, i);
+          setFinalGpa(0);
         }}
         key={i}
         placeholder={`Subject#${i} Marks`}
@@ -116,6 +120,7 @@ const GpaCalculationScreen = props => {            //see in handleCalculation an
       <TextInputComponent
         onChangeTextProps={value => {
           handleTextChange('textChangeCreditHours', value, i);
+          setFinalGpa(0);
         }}
         style={{top: 10}}
         key={i}
@@ -131,12 +136,15 @@ const GpaCalculationScreen = props => {            //see in handleCalculation an
             <View style={styles.gpaRow}>{subjects}</View>
             <View style={styles.creditHoursRow}>{subjectsGPA}</View>
           </View>
+          <View>
           <ButtonComponent
             title="Calculate"
             onPressProp={() => {
               handleCalculation();
             }}
           />
+         {finalgpa>0?<Text style={styles.finalGpaStyle}>{`Your GPA is ${finalgpa}`}</Text>:""} 
+          </View>
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -166,6 +174,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#343a40',
   },
+  finalGpaStyle :{
+    marginTop:20,
+    borderRadius:10,
+    textAlign:'center',
+    alignSelf:'center',
+    justifyContent:'center',
+  width:"50%",
+  fontWeight:'bold',
+  color:"white",
+  fontSize:15,
+  backgroundColor:"green",
+  paddingHorizontal:30,
+  paddingVertical:15
+  }
 });
 
 export default GpaCalculationScreen;

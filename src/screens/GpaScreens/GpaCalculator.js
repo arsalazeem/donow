@@ -5,9 +5,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import ButtonComponent from '../../components/ ButtonComponent';
 import { UniVersityContext } from '../../context/UniversityContext';
 const GpaCalculator = ({navigation}) => {
-  const {uniName,handleUniName}=useContext(UniVersityContext);
-  const [iValue, setValue] = useState(0);
 
+  const [iValue, setValue] = useState(0);
   const handleEmptyValue=()=>{
     if (iValue<2 || iValue >10){
       alert("You can only enter number of subjects from 2 to 10");
@@ -30,6 +29,7 @@ const GpaCalculator = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.parentView}>
         <TextInput
+        placeholderTextColor="black"
           value={iValue.toString()}
           onChangeText={value => setValue(value.toString())}
           style={styles.input}

@@ -3,6 +3,7 @@ import {Text, StyleSheet, View, FlatList, Button, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Context} from 'react';
 import {UniVersityContext} from '../context/UniversityContext';
+
 const SelectUni = ({navigation}) => {
   const {uniName, handleUniName} = useContext(UniVersityContext);
   const handleNaviation = screenToNavigate => {
@@ -12,30 +13,30 @@ const SelectUni = ({navigation}) => {
   return (
     <View>
       <View style={styles.uniParent}>
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              handleUniName('qau');
-              handleNaviation('SelectType');
-            }}>
-            <Image
-              style={styles.imageStyle}
-              source={require('../assets/QAU.png')}
-            />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              handleUniName('numl');
-              handleNaviation('SelectType');
-            }}>
-            <Image
-              style={styles.imageStyle}
-              source={require('../assets/numl.png')}
-            />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.imageContainer}
+          onPress={() => {
+            handleUniName('qau');
+            handleNaviation('SelectType');
+          }}>
+          <Image
+            style={styles.imageStyle}
+            resizeMode="contain"
+            source={require('../assets/QAU.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.imageContainer}
+          onPress={() => {
+            handleUniName('numl');
+            handleNaviation('SelectType');
+          }}>
+          <Image
+            style={styles.imageStyle}
+            resizeMode="contain"
+            source={require('../assets/numl.png')}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -43,15 +44,23 @@ const SelectUni = ({navigation}) => {
 
 const styles = StyleSheet.create({
   uniParent: {
-    height: '100%',
+    backgroundColor:"#343a40",
     height: '100%',
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+  imageContainer: {
+    borderRadius:15,
+    backgroundColor:"white",
+    padding:20,
+    width: '100%',
+    alignItems: 'center',
+    elevation: 100
+  },
   imageStyle: {
-    height: 174,
-    width: 140,
+    height: 200,
+    width: 200,
   },
 });
 

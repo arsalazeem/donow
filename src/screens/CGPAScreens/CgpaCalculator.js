@@ -29,6 +29,7 @@ const CgpaCalculator = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.parentView}>
       <TextInput
+      placeholderTextColor="black"
         style={styles.input}
         value={iValue.toString()}
         onChangeText={(value)=>setValue(value)}

@@ -7,6 +7,7 @@ const TextInputComponent= ({onChangeTextProps,placeholder}) => {
         onChangeText={onChangeTextProps}
         style={styles.input}
         placeholder={placeholder}
+        placeholderTextColor="black"
         keyboardType="numeric"
       />
   );
@@ -14,6 +15,7 @@ const TextInputComponent= ({onChangeTextProps,placeholder}) => {
 
 const styles = StyleSheet.create({
   input: {
+    fontFamily:"bold",
     marginVertical:5,
     fontSize:12,
     color:'black',

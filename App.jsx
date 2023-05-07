@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {Appearance} from 'react-native';
+import { NavigationContainer ,DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
 import GpaCalculator from './src/screens/GpaScreens/GpaCalculator';
@@ -8,10 +9,18 @@ import GpaCalculationScreen from './src/screens/GpaScreens/GpaCalculationScreen'
 import CGpaCalculationScreen from './src/screens/CGPAScreens/CGpaCalculationScreen';
 import SelectUni from './src/screens/SelectUni';
 import { UniversityContextProvider } from './src/context/UniversityContext';
+const lightTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white',
+    text: 'black',
+  },
+};
 const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={lightTheme}>
       <Stack.Navigator>
       <Stack.Screen
       name="Home"

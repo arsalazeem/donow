@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useState} from 'react';
 import {Text, StyleSheet, View, FlatList, Button} from 'react-native';
 import {
   ScrollView,
@@ -43,6 +43,7 @@ const reducer = (state, action) => {
 };
 
 const CGpaCalculationScreen = props => {
+  const [finalCgpa,setfinalCgpa]=useState(0);
   const [state, dispatch] = useReducer(reducer, {});
   const numberOfSubjects = props.route.params.numberOfSubjects;
   const subjects = [];
@@ -90,7 +91,8 @@ const CGpaCalculationScreen = props => {
     }
     if (noOfIssues<1){
    let calcualtedGpa= calculateGpa(state,null,'cgpa');
-   alert(calcualtedGpa);
+   alert(`Your CGPA is ${calcualtedGpa}`);
+   setfinalCgpa(calcualtedGpa);
     }
   };
   const handleTextChange = (type, currentValue, currentKey) => {
@@ -113,6 +115,7 @@ const CGpaCalculationScreen = props => {
       <TextInputComponent
         onChangeTextProps={value => {
           handleTextChange('textChangeGpa', value, i);
+          setfinalCgpa(0);
         }}
         key={i}
         placeholder={`Semester#${i} GPA`}
@@ -122,6 +125,7 @@ const CGpaCalculationScreen = props => {
       <TextInputComponent
         onChangeTextProps={value => {
           handleTextChange('textChangeCreditHours', value, i);
+          setfinalCgpa(0);
         }}
         style={{top: 10}}
         key={i}
@@ -143,6 +147,7 @@ const CGpaCalculationScreen = props => {
               handleCalculation();
             }}
           />
+          {finalCgpa>0?<Text style={styles.finalGpaStyle}>{`Your CGPA is ${finalCgpa}`}</Text>:""} 
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -172,6 +177,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#343a40',
   },
+  finalGpaStyle :{
+    marginTop:20,
+    borderRadius:10,
+    textAlign:'center',
+    alignSelf:'center',
+    justifyContent:'center',
+  width:"50%",
+  fontWeight:'bold',
+  color:"white",
+  fontSize:15,
+  backgroundColor:"green",
+  paddingHorizontal:30,
+  paddingVertical:15
+  }
 });
 
 export default CGpaCalculationScreen;
