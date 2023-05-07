@@ -1,44 +1,43 @@
-const getGpaFromMakrs = (subject, uni) => {
-  subject = Number(subject);
-  switch (uni) {
-    case 'numl':
-      if (subject >= 80) {
-        subject = 4.0;
-        return subject;
-      } else if (subject >= 77 && subject <= 79) {
-        subject = 3.66;
-        return subject;
-      } else if (subject >= 74 && subject <= 76) {
-        subject = 3.33;
-        return subject;
-      } else if (subject >= 70 && subject <= 73) {
-        subject = 3.0;
-        return subject;
-      } else if (subject >= 67 && subject <= 69) {
-        subject = 2.66;
-        return subject;
-      } else if (subject >= 64 && subject <= 66) {
-        subject = 2.33;
-        return subject;
-      } else if (subject >= 60 && subject <= 63) {
-        subject = 2.0;
-        return subject;
-      } else if (subject >= 50 && subject <= 59) {
-        subject = 1.5;
-        return subject;
-      } else if (subject < 50 && subject > 0) {
-        subject = 0;
-        return subject;
-      } else {
-        return 'empty';
+const getGpaFromMarks = (subject, uni) => {
+  try {
+    const scales = {
+      numl: [
+        {min: 80, max: Infinity, scale: 4.0},
+        {min: 77, max: 79, scale: 3.66},
+        {min: 74, max: 76, scale: 3.33},
+        {min: 70, max: 73, scale: 3.0},
+        {min: 67, max: 69, scale: 2.66},
+        {min: 64, max: 66, scale: 2.33},
+        {min: 60, max: 63, scale: 2.0},
+        {min: 50, max: 59, scale: 1.5},
+        {min: -9999, max: 49, scale: 0},
+      ],
+      qau: [
+        {min: 80, max: Infinity, scale: 4.0},
+        {min: 76, max: 79, scale: 3.8},
+        {min: 72, max: 75, scale: 3.5},
+        {min: 68, max: 71, scale: 3.0},
+        {min: 64, max: 67, scale: 2.8},
+        {min: 60, max: 63, scale: 2.5},
+        {min: 55, max: 59, scale: 2.0},
+        {min: 50, max: 54, scale: 1.0},
+        {min: -9999, max: 49, scale: 0},
+      ],
+    };
+    const uniScales = scales[uni];
+    if (!uniScales) {
+      return 'empty';
+    }
+    for (let i = 0; i < uniScales.length; i++) {
+      const {min, max, scale} = uniScales[i];
+      if (subject >= min && subject <= max) {
+        return scale;
       }
-      break;
-    case 'qau':
-      alert('Work in progress');
-      return;
-      break;
-    default:
-      alert('Something is messed up please restart your app');
+    }
+  } catch (err) {
+    alert(
+      'Are you sure you are providing the correct data.Marks can only be between range 0 to 100',
+    );
   }
 };
 const debuggerConsole = (variableName, dataToPrint) => {
@@ -55,7 +54,7 @@ const calculateGpa = (subjectObject, uniName, type = 'gpa') => {
       k = 1;
       for (data in subjectObject) {
         let currentData = subjectObject[data];
-        let CurrentMarks = getGpaFromMakrs(currentData.subjectGpa, uniName);
+        let CurrentMarks = getGpaFromMarks(currentData.subjectGpa, uniName);
         ans = ans + CurrentMarks * Number(currentData.subjectCreditHours);
         totalCreditHours =
           Number(totalCreditHours) + Number(currentData.subjectCreditHours);
