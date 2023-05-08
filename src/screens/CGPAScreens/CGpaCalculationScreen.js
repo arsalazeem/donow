@@ -38,7 +38,7 @@ const reducer = (state, action) => {
 };
 
 const CGpaCalculationScreen = props => {
-  const [finalCgpa,setfinalCgpa]=useState(0);
+  const [finalCgpa,setFinalCgpa]=useState(0);
   const [state, dispatch] = useReducer(reducer, {});
   const numberOfSubjects = props.route.params.numberOfSubjects;
   const subjects = [];
@@ -74,10 +74,10 @@ const CGpaCalculationScreen = props => {
           currentData.subjectCreditHours ||
           currentData.subjectCreditHours <= 0
         ) {
-          alert(`Please provide Credit Hours for Subject  ${k}`);
+          alert(`Please provide Credit Hours for Semester  ${k}`);
           noOfIssues++;
         } else {
-          alert(`Please provide  GPA for Subject  ${k}`);
+          alert(`Please provide  GPA for Semester  ${k}`);
           noOfIssues++;
         }
         return ;
@@ -86,8 +86,13 @@ const CGpaCalculationScreen = props => {
     }
     if (noOfIssues<1){
    let calcualtedGpa= calculateGpa(state,null,'cgpa');
-   alert(`Your CGPA is ${calcualtedGpa}`);
-   setfinalCgpa(calcualtedGpa);
+   if (isNaN(calcualtedGpa)){
+    alert("Please provide all the details");
+  }
+  else {
+    setFinalCgpa(calcualtedGpa);
+    alert(`Your CGPA is ${calcualtedGpa}`);
+  }
     }
   };
   const handleTextChange = (type, currentValue, currentKey) => {
@@ -110,7 +115,7 @@ const CGpaCalculationScreen = props => {
       <TextInputComponent
         onChangeTextProps={value => {
           handleTextChange('textChangeGpa', value, i);
-          setfinalCgpa(0);
+          setFinalCgpa(0);
         }}
         key={i}
         placeholder={`Semester#${i} GPA`}
@@ -120,7 +125,7 @@ const CGpaCalculationScreen = props => {
       <TextInputComponent
         onChangeTextProps={value => {
           handleTextChange('textChangeCreditHours', value, i);
-          setfinalCgpa(0);
+          setFinalCgpa(0);
         }}
         style={{top: 10}}
         key={i}
@@ -143,7 +148,7 @@ const CGpaCalculationScreen = props => {
               handleCalculation();
             }}
           />
-          {finalCgpa>0?<Text style={styles.finalGpaStyle}>{`Your CGPA is ${finalCgpa}`}</Text>:""} 
+          {finalCgpa>0?<Text style={styles.finalGpaStyle}>{`Your CGPA is ${finalCgpa} for ${numberOfSubjects} Semesters`}</Text>:""} 
           <BannerAdComponent />
         </ScrollView>
       </SafeAreaView>

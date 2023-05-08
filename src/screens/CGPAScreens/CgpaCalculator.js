@@ -5,7 +5,7 @@ import ButtonComponent from '../../components/ ButtonComponent';
 import BannerAdComponent from '../../components/BannerAd/BannerAdComponent';
 const CgpaCalculator = ({navigation}) => {
 
-  const [iValue,setValue]=useState(0);
+  const [iValue,setValue]=useState("");
   console.log(iValue);
   const handleEmptyValue=()=>{
     if (iValue<2 || iValue >10){
@@ -33,7 +33,7 @@ const CgpaCalculator = ({navigation}) => {
         style={styles.input}
         value={iValue.toString()}
         onChangeText={(value)=>setValue(value)}
-        placeholder="Number of Completed Semesters"
+        placeholder="Enter Number of Completed Semesters i.e 4"
         keyboardType='numeric'
       />
       <View style={styles.buttonParent}>

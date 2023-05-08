@@ -1,12 +1,12 @@
-import React, {useState } from 'react';
-import {StyleSheet, View} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 import ButtonComponent from '../../components/ ButtonComponent';
 import BannerAdComponent from '../../components/BannerAd/BannerAdComponent';
-const GpaCalculator = ({navigation}) => {
-  const [iValue, setValue] = useState(0);
-  const handleEmptyValue=()=>{
-    if (iValue<2 || iValue >10){
+const GpaCalculator = ({ navigation }) => {
+  const [iValue, setValue] = useState("");
+  const handleEmptyValue = () => {
+    if (iValue < 2 || iValue > 10) {
       alert("You can only enter number of subjects from 2 to 10");
       return false;
     }
@@ -19,19 +19,21 @@ const GpaCalculator = ({navigation}) => {
     screenToNavigate,
     queryParams = {},
   ) => {
-    if (handleEmptyValue()==true){
-    navigation.navigate(screenToNavigate, queryParams);
+    if (handleEmptyValue() == true) {
+      navigation.navigate(screenToNavigate, queryParams);
     }
   };
   return (
     <View style={styles.container}>
       <View style={styles.parentView}>
+
+
         <TextInput
-        placeholderTextColor="black"
+          placeholderTextColor="black"
           value={iValue.toString()}
           onChangeText={value => setValue(value.toString())}
           style={styles.input}
-          placeholder="Number of Subjects"
+          placeholder="Enter Number of Subjects i.e 5"
           keyboardType="numeric"
         />
         <View style={styles.buttonParent}>
@@ -40,10 +42,10 @@ const GpaCalculator = ({navigation}) => {
             Pheight={100}
             Pwidth={100}
             onPressProp={() => {
-              handleNaviation(navigation, 'GpaCal', {numberOfSubjects: iValue});
+              handleNaviation(navigation, 'GpaCal', { numberOfSubjects: iValue });
             }}
           />
-       <BannerAdComponent />
+          <BannerAdComponent />
         </View>
       </View>
     </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Appearance} from 'react-native';
+import {Button} from 'react-native';
 import { NavigationContainer ,DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
@@ -25,6 +25,7 @@ const AppNavigator = () => {
       <Stack.Screen
       name="Home"
       component={SelectUni}
+     
       options={{
         title: "Select University",
         headerTitleAlign: "center",
@@ -32,6 +33,10 @@ const AppNavigator = () => {
         headerStyle:{
           backgroundColor:"#343a40"
         }
+        ,
+        headerRight: () => (
+          <Button title="Update count" />
+        )
       }}
     />
       <Stack.Screen

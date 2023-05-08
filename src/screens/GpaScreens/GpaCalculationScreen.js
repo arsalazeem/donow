@@ -78,7 +78,7 @@ const GpaCalculationScreen = props => {
           alert(`Please provide Credit Hours for Subject  ${k}`);
           noOfIssues++;
         } else {
-          alert(`Please provide  GPA for Subject  ${k}`);
+          alert(`Please provide  Marks for Subject  ${k}`);
           noOfIssues++;
         }
         return;
@@ -87,8 +87,14 @@ const GpaCalculationScreen = props => {
     }
     if (noOfIssues < 1) {
       let calcualtedGpa = calculateGpa(state,uniName,'gpa');
-      setFinalGpa(calcualtedGpa);
-      alert(`Your GPA is ${calcualtedGpa}`);
+      if (isNaN(calcualtedGpa)){
+        alert("Please provide all the details");
+      }
+      else {
+        setFinalGpa(calcualtedGpa);
+        alert(`Your GPA is ${calcualtedGpa}`);
+      }
+     
     }
   };
   const handleTextChange = (type, currentValue, currentKey) => {
@@ -147,7 +153,7 @@ const GpaCalculationScreen = props => {
             }}
           />
           
-         {finalgpa>0?<Text style={styles.finalGpaStyle}>{`Your GPA is ${finalgpa}`}</Text>:""} 
+         {finalgpa>0?<Text style={styles.finalGpaStyle}>{`Your GPA is ${finalgpa} for ${numberOfSubjects} Subjects`}</Text>:""} 
           </View>
         </ScrollView>
       </SafeAreaView>
