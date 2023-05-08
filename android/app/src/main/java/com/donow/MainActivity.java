@@ -1,4 +1,4 @@
-package com.donow;
+package com.gpacalculator;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

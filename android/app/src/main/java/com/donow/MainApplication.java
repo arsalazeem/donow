@@ -1,4 +1,4 @@
-package com.donow;
+package com.gpacalculator;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

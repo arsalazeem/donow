@@ -33,10 +33,9 @@ const AppNavigator = () => {
         headerStyle:{
           backgroundColor:"#343a40"
         }
-        ,
-        headerRight: () => (
-          <Button title="Update count" />
-        )
+        // headerRight: () => (
+        //   <Button title="Update count" />
+        // )
       }}
     />
       <Stack.Screen

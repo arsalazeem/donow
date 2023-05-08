@@ -5,7 +5,7 @@ import ButtonComponent from '../components/ ButtonComponent';
 import BannerAdComponent from '../components/BannerAd/BannerAdComponent';
 const HomeScreen = ({navigation}) => {
   const handleNaviation=(screenToNavigate)=>{
-    console.log(screenToNavigate);
+    //console.log(screenToNavigate);
     navigation.navigate(screenToNavigate);
   }
   return (

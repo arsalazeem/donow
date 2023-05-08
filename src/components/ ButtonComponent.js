@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, FlatList, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ButtonComponent = ({title,onPressProp}) => {
-  // console.log(props.navigation.navigate);
+  // //console.log(props.navigation.navigate);
   return (
      <TouchableOpacity 
          onPress={onPressProp}

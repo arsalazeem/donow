@@ -9,7 +9,7 @@ import { UniVersityContext } from '../context/UniversityContext';
 const SelectUni = ({ navigation }) => {
   const { uniName, handleUniName } = useContext(UniVersityContext);
   const handleNaviation = (screenToNavigate) => {
-    console.log(screenToNavigate);
+    //console.log(screenToNavigate);
     navigation.navigate(screenToNavigate);
   };
   return (

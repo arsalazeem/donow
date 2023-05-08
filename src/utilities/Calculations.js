@@ -41,9 +41,9 @@ const getGpaFromMarks = (subject, uni) => {
   }
 };
 const debuggerConsole = (variableName, dataToPrint) => {
-  console.log(`*************${variableName} to Print*****************`);
-  console.log(dataToPrint);
-  console.log(`*************${variableName}*****************`);
+  //console.log(`*************${variableName} to Print*****************`);
+  //console.log(dataToPrint);
+  //console.log(`*************${variableName}*****************`);
 };
 const calculateGpa = (subjectObject, uniName, type = 'gpa') => {
   let ans = 0;
@@ -67,8 +67,8 @@ const calculateGpa = (subjectObject, uniName, type = 'gpa') => {
       }
       debuggerConsole('Total Credit Hours', totalCreditHours);
       gpa = ans / totalCreditHours;
-      // console.log(gpa);
-      console.log(gpa.toFixed(3));
+      // //console.log(gpa);
+      //console.log(gpa.toFixed(3));
       return gpa.toFixed(3);
       break;
     case 'cgpa':
@@ -88,12 +88,12 @@ const calculateGpa = (subjectObject, uniName, type = 'gpa') => {
       }
       debuggerConsole('Total Credit Hours', totalCreditHours);
       gpa = ans / totalCreditHours;
-      // console.log(gpa);
-      console.log(gpa.toFixed(3));
+      // //console.log(gpa);
+      //console.log(gpa.toFixed(3));
       return gpa.toFixed(3);
       break;
     default:
-      console.log(`No type provided the current provided type is ${type}`);
+      //console.log(`No type provided the current provided type is ${type}`);
   }
 };
 export default calculateGpa;

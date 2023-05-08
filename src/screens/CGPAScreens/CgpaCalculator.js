@@ -6,7 +6,7 @@ import BannerAdComponent from '../../components/BannerAd/BannerAdComponent';
 const CgpaCalculator = ({navigation}) => {
 
   const [iValue,setValue]=useState("");
-  console.log(iValue);
+  //console.log(iValue);
   const handleEmptyValue=()=>{
     if (iValue<2 || iValue >10){
       alert("You can only enter number of subjects from 2 to 10");

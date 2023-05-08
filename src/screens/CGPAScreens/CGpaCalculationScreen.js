@@ -43,12 +43,12 @@ const CGpaCalculationScreen = props => {
   const numberOfSubjects = props.route.params.numberOfSubjects;
   const subjects = [];
   const subjectsGPA = [];
-  console.log(state);
+  //console.log(state);
   const handleEmptyValue = () => {
     for (let data in subjects){
      let indexToCheck=Number(data)+1;
      if (indexToCheck in state){
-         console.log(indexToCheck);
+         //console.log(indexToCheck);
      }
      else {
          alert(`Please provide details for Subject ${indexToCheck}`);
@@ -106,8 +106,8 @@ const CGpaCalculationScreen = props => {
       dispatchObject['actionType'] = 'textChangeCreditHours';
       dispatchObject['subjectCreditHours'] = currentValue;
     }
-    console.log('Dispatch Object is');
-    console.log(dispatchObject);
+    //console.log('Dispatch Object is');
+    //console.log(dispatchObject);
     dispatch(dispatchObject);
   };
   for (let i = 1; i <= numberOfSubjects; i++) {
